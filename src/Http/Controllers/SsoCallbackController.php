@@ -43,6 +43,8 @@ class SsoCallbackController extends Controller
                 'tenant_id' => $verified->tenantId,
                 'accessible_apps' => $verified->accessibleApps,
                 'identity_synced_at' => now(),
+                'last_login_at' => now(),
+                'last_login_ip' => $request->ip(),
             ],
         );
 

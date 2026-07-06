@@ -34,6 +34,11 @@ abstract class InternalApiClient
         return $this->handle($this->http()->put($uri, $data), 'PUT', $uri);
     }
 
+    protected function patch(string $uri, array $data = []): array
+    {
+        return $this->handle($this->http()->patch($uri, $data), 'PATCH', $uri);
+    }
+
     protected function postFile(string $uri, UploadedFile $file, array $data = []): array
     {
         $request = $this->http()->attach('file', $file->getContent(), $file->getClientOriginalName());

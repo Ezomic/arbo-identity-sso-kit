@@ -15,7 +15,7 @@ trait HasUuidPrimaryKey
     protected static function bootHasUuidPrimaryKey(): void
     {
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} ??= (string) Str::uuid();
+            $model->{$model->getKeyName()} ??= (string) Str::uuid7();
         });
     }
 }

@@ -19,9 +19,10 @@ class SsoCallbackController extends Controller
      * sync the local shadow rows, and establish this app's own session.
      *
      * Relies on the consuming app's own App\Models\User / App\Models\Tenant
-     * following the shared shadow-table shape (id, name, email,
-     * current_role, tenant_id, identity_synced_at) — see identity-sso-kit's
-     * README for the expected migrations.
+     * following the shared shadow-table shape (id, name, email, first_name,
+     * last_name, phone_number, preferred_locale, timezone, current_role,
+     * tenant_id, identity_synced_at) — see identity-sso-kit's README for the
+     * expected migrations.
      */
     public function __invoke(Request $request): RedirectResponse
     {
@@ -39,6 +40,11 @@ class SsoCallbackController extends Controller
             [
                 'name' => $verified->name,
                 'email' => $verified->email,
+                'first_name' => $verified->firstName,
+                'last_name' => $verified->lastName,
+                'phone_number' => $verified->phoneNumber,
+                'preferred_locale' => $verified->preferredLocale,
+                'timezone' => $verified->timezone,
                 'current_role' => $verified->role,
                 'tenant_id' => $verified->tenantId,
                 'accessible_apps' => $verified->accessibleApps,
